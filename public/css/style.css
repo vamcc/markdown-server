@@ -1,0 +1,49 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: lightseagreen;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.container {
+    width: 800px;
+    margin: 20px auto;
+    padding: 10px 20px;
+}
+
+.list-box {
+    width: 600px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #eee;
+}
+
+.content-box {
+    width: 800px;
+    padding: 10px 30px 20px;
+    border: 1px solid #ccc;
+}
+
+.file {
+    padding-left: 30px;
+}
+
+.file-dir {
+    background: url(/images/folder.svg) no-repeat scroll 0 2px/20px 20px padding-box;
+}
+
+.file-file {
+    background: url(/images/file.svg) no-repeat scroll 0 2px/20px 20px padding-box;
+}
+
+.file-md {
+    background: url(/images/favicon.ico) no-repeat scroll 0 2px/20px 20px padding-box;
+}
