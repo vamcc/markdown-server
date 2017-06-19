@@ -11,6 +11,7 @@ const router = require('./routes')
 const host = require('./helpers/getLocalIPAddress')
 
 const app = express()
+const port = process.argv[2] || 8000
 
 // config
 app.set('views', path.join(__dirname, 'public/views'))
@@ -22,12 +23,12 @@ app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
 app.use('/', router)
 
 // server
-app.listen(8000, host, err => {
+app.listen(port, err => {
     if (err) {
         console.log(chalk.red(err))
         return
     }
-    console.log(chalk.green(`markdown server in listening at http://${host}:8000`))
+    console.log(chalk.green(`markdown server in listening at http://${host}:${port}`))
     console.log(chalk.green(`you can preview current directory!`))
-    open(`http://${host}:8000`)
+    open(`http://${host}:${port}`)
 })

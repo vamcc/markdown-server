@@ -1,22 +1,25 @@
-# 切到任意目录预览markdown文件
+# A static resource server which can also preview markdown file
 
-npm仓库里的markdown server之类的项目太多了，就不发布了。功能比较简单，没有特殊要求基本够用了。
+This project won't be published because there have been several projects in npm repository. It has some simple functions and should meet your basic requirement.
 
 ## Usage
 
-使用`npm link`安装到全局
+create global link with `npm link`
 
 ``` bash
-git clone <this repository>
+# clone this repository
+git clone https://github.com/vamcc/markdown-server.git
+# install and link
+cd markdown-server
 npm install && npm link
 ```
 
-命令行切到任意目录下，输入以下命令
+switch to any folder and type following command
 
 ``` bash
 markdown
 ```
 
-目前仅包含一个小的文件系统，预览md文件和图片，其他均为纯文本展示。想添加更多好玩的东西，自己动手吧！
+Now, it only contains a server to serve static resource and preview markdown file. Make it more interesting by yourself.
 
 ### Have Fun!

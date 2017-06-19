@@ -5,10 +5,10 @@ const path = require('path')
 const fs = require('fs')
 const showdown = require('showdown')
 const chalk = require('chalk')
+const mime = require('../helpers/mime').types
 
 const converter = new showdown.Converter()
 const currentPath = process.cwd()
-const imgSuffixList = ['ico', 'jpg', 'jpeg', 'gif', 'png']
 
 function listDirectory(req, res, filePath) {
     const title = '文件列表'
@@ -20,7 +20,7 @@ function listDirectory(req, res, filePath) {
         const list = fileList.map(file => {
             const stats = fs.statSync(path.join(filePath, file))
             let url = `/${file}`
-            if (filePath !== currentPath) url = filePath.substr(currentPath.length) + url
+            if (filePath !== currentPath) url = path.join('/', filePath.substr(currentPath.length), url)
             return {
                 url: url,
                 name: file,
@@ -35,42 +35,41 @@ function listDirectory(req, res, filePath) {
     })
 }
 
-function showText(req, res, filePath) {
+function showMarkdown(req, res, filePath) {
     fs.readFile(filePath, 'utf-8', (err, data) => {
         if (err) {
             console.log(chalk.red(err))
             res.redirect('/')
             return
         }
-        if (path.extname(filePath) === '.md') {
-            res.render('markdown', {
-                title: path.basename(filePath),
-                data: converter.makeHtml(data)
-            })
-        } else {
-            res.send(data)
-        }
+        res.render('markdown', {
+            title: path.basename(filePath),
+            data: converter.makeHtml(data)
+        })
     })
 }
 
-function showImg(req, res, filePath) {
+function showStaticFiles(req, res, filePath) {
+    let extname = ''
     fs.readFile(filePath, (err, data) => {
         if (err) {
             console.log(chalk.red(err))
-            res.redirect('/')
-            return
+            res.writeHead(500, {"content-type":"text/plain"})
+            res.end(err)
+            return 
         }
-        res.writeHead(200, {'Content-Type': 'image/jpeg'})
+        extname = mime[path.extname(filePath)] || "text/plain"
+        res.writeHead(200, {'Content-Type': extname})
         res.end(data)
     })
 }
 
 function showFile(req, res, filePath) {
     const extname = path.extname(filePath).substr(1).toLowerCase()
-    if (!~imgSuffixList.indexOf(extname)) {
-        showText(req, res, filePath)
+    if (extname === 'md') {
+        showMarkdown(req, res, filePath)
     } else {
-        showImg(req, res, filePath)
+        showStaticFiles(req, res, filePath)
     }
 }
 
@@ -90,6 +89,9 @@ router.get('/*', function(req, res) {
         stats.isDirectory()
             ? listDirectory(req, res, filepath)
             : showFile(req, res, filepath)
+    } else {
+        res.writeHead(404, {"content-type":"text/plain"})
+        res.end(null)
     }
 })
 
