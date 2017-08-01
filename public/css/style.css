@@ -8,7 +8,7 @@ a {
     text-decoration: none;
 }
 
-ul {
+.list-box ul {
     list-style: none;
     padding-left: 0;
 }

@@ -19,7 +19,7 @@ function listDirectory(req, res, filePath) {
         }
         const list = fileList.map(file => {
             const stats = fs.statSync(path.join(filePath, file))
-            let url = `/${file}`
+            let url = path.join('/', file)
             if (filePath !== currentPath) url = path.join('/', filePath.substr(currentPath.length), url)
             return {
                 url: url,
