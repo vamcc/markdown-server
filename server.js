@@ -23,7 +23,7 @@ app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
 app.use('/', router)
 
 // server
-app.listen(port, err => {
+app.listen(port, '0.0.0.0', err => {
     if (err) {
         console.log(chalk.red(err))
         return
