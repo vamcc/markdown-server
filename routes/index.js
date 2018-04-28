@@ -74,6 +74,9 @@ function showFile(req, res, filePath) {
 }
 
 /* get */
+router.get('/robots.txt', function(req, res) {
+    res.end(null);
+});
 
 router.get('/*', function(req, res) {
     const filename = req.params[0] || ''

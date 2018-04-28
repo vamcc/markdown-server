@@ -1,6 +1,10 @@
+* {
+    box-sizing: border-box;
+}
 html, body {
     margin: 0;
     padding: 0;
+    font-size: 20px;
 }
 
 a {
@@ -14,13 +18,12 @@ a {
 }
 
 .container {
-    width: 800px;
+    width: 480px;
     margin: 20px auto;
-    padding: 10px 20px;
+    padding: .3rem .4rem;
 }
 
 .list-box {
-    width: 600px;
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #eee;
@@ -33,17 +36,36 @@ a {
 }
 
 .file {
-    padding-left: 30px;
+    padding-left: 1rem;
+    font-size: 1rem;
 }
 
 .file-dir {
-    background: url(/images/folder.svg) no-repeat scroll 0 2px/20px 20px padding-box;
+    background: url(/images/folder.svg) no-repeat scroll 0 .1rem/1rem 1rem padding-box;
 }
 
 .file-file {
-    background: url(/images/file.svg) no-repeat scroll 0 2px/20px 20px padding-box;
+    background: url(/images/file.svg) no-repeat scroll 0 .1rem/1rem 1rem padding-box;
 }
 
 .file-md {
-    background: url(/images/favicon.ico) no-repeat scroll 0 2px/20px 20px padding-box;
+    background: url(/images/favicon.ico) no-repeat scroll 0 .1rem/1rem 1rem padding-box;
+}
+
+@media screen and (max-width: 480px) {
+    .bd {
+        height: 100%;
+        background-color: #eee;
+    }
+
+    .container {
+        width: 100%;
+        margin: 0;
+    }
+
+    .list-box {
+        border: 0;
+    }
+
+
 }
