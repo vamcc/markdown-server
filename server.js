@@ -19,6 +19,12 @@ app.set('view engine', 'ejs')
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')))
 
+// 允许跨域
+app.use('/', (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+})
+
 // routes
 app.use('/', router)
 
