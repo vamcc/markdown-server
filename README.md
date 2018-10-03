@@ -2,6 +2,8 @@
 
 This project won't be published because there have been several projects in npm repository. It has some simple functions and should meet your basic requirement.
 
+it support cors now!
+
 ## Usage
 
 create global link with `npm link`
